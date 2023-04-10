@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "shape_handlers.h"
+#include "calculator_handlers.h"
 #include "shapes.h"
 #include "calculator.h"
 
@@ -96,10 +97,8 @@ void shapes_menu() {
 
 void calculator_menu() {
     int choice;
-    double value1, value2, result;
 
     while (1) {
-        clear_screen();
         printf("\nCalculator Menu:\n");
         printf("1. Addition\n");
         printf("2. Subtraction\n");
@@ -109,45 +108,29 @@ void calculator_menu() {
         printf("6. Return to main menu\n");
         printf("Choose an option: ");
         scanf("%d", &choice);
-        getchar();
-
-        if (choice == 6) {
-            return;
-        }
-
-        printf("Enter two numbers: ");
-        scanf("%lf %lf", &value1, &value2);
+        getchar(); // Consume the newline character left in the input buffer
 
         switch (choice) {
             case 1:
-                result = add(value1, value2);
+                handle_addition();
                 break;
             case 2:
-                result = subtract(value1, value2);
+                handle_subtraction();
                 break;
             case 3:
-                result = multiply(value1, value2);
+                handle_multiplication();
                 break;
             case 4:
-                if (value2 == 0) {
-                    printf("Error: Division by zero.\n");
-                    continue;
-                }
-                result = divide(value1, value2);
+                handle_division();
                 break;
             case 5:
-                if (value2 == 0) {
-                    printf("Error: Division by zero.\n");
-                    continue;
-                }
-                result = modulus(value1, value2);
+                handle_modulus();
                 break;
+            case 6:
+                return;
             default:
                 printf("\nInvalid choice, please try again.\n");
-                continue;
         }
-
-        printf("Result: %.2lf\n", result);
     }
 }
 
@@ -158,8 +141,6 @@ void clear_screen() {
         system("clear");
     #endif
 }
-
-
 
 void print_area_circumference(double area, double circumference) {
     printf("Area: %.2lf\n", area);
