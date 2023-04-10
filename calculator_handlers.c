@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "calculator.h"
 
 void handle_addition() {
     double a, b;

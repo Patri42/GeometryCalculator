@@ -99,6 +99,7 @@ void calculator_menu() {
     int choice;
 
     while (1) {
+        clear_screen();
         printf("\nCalculator Menu:\n");
         printf("1. Addition\n");
         printf("2. Subtraction\n");
@@ -108,7 +109,7 @@ void calculator_menu() {
         printf("6. Return to main menu\n");
         printf("Choose an option: ");
         scanf("%d", &choice);
-        getchar(); // Consume the newline character left in the input buffer
+        getchar(); 
 
         switch (choice) {
             case 1:
@@ -131,6 +132,7 @@ void calculator_menu() {
             default:
                 printf("\nInvalid choice, please try again.\n");
         }
+        waitForInput();
     }
 }
 
@@ -142,12 +144,9 @@ void clear_screen() {
     #endif
 }
 
-void print_area_circumference(double area, double circumference) {
-    printf("Area: %.2lf\n", area);
-    printf("Circumference: %.2lf\n", circumference);
-}
 
-// Adjust void calculator_menu()
+
+
 
 /*To make input validation more robust, consider using fgets() and sscanf() instead of scanf(). 
 This will help you prevent buffer overflows and provide better error handling. 

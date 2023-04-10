@@ -1,5 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "shapes.h"
+
+void print_area_circumference(double area, double circumference) {
+    printf("Area: %.2lf\n", area);
+    printf("Circumference: %.2lf\n", circumference);
+}
 
 void handle_rectangle() {
     double length, width;
