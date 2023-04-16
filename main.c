@@ -12,6 +12,7 @@ void waitForInput();
 void clear_screen();
 void to_lowercase(char *str);
 void shapes_menu();
+double py_input_func(const char *prompt);
 void calculator_menu();
 void handle_rectangle();
 void handle_parallelogram();
@@ -101,20 +102,23 @@ void shapes_menu() {
     }
 }
 
+double py_input_func(const char *prompt) {
+    double number;
+    printf("%s", prompt);
+    scanf("%lf", &number);
+    getchar();
+    return number;
+}
+
 void calculator_menu() {
     int choice;
     char continue_calculation;
 
     while (1) {
         clear_screen();
-        printf("\nEnter the first number: ");
-        double a;
-        scanf("%lf", &a);
-        getchar();
-        printf("Enter the second number: ");
-        double b;
-        scanf("%lf", &b);
-        getchar();
+
+        double a = py_input_func("\nEnter the first number: ");
+        double b = py_input_func("Enter the second number: ");
 
         clear_screen();
         printf("\nCalculator Menu:\n");
