@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
 #include "shape_handlers.h"
 #include "calculator_handlers.h"
 #include "shapes.h"
@@ -8,6 +10,7 @@
 void main_menu();
 void waitForInput();
 void clear_screen();
+void to_lowercase(char *str);
 void shapes_menu();
 void calculator_menu();
 void handle_rectangle();
@@ -56,6 +59,12 @@ void waitForInput() {
     getchar();
 }
 
+void to_lowercase(char *str) {
+    for (int i = 0; str[i]; i++) {
+        str[i] = tolower((unsigned char)str[i]);
+    }
+}
+
 void shapes_menu() {
     char choice[50];
 
@@ -70,6 +79,8 @@ void shapes_menu() {
         printf("Choose an option: ");
         fgets(choice, sizeof(choice), stdin);
         strtok(choice, "\n"); // Remove trailing newline character
+
+        to_lowercase(choice); // Convert user input to lowercase
 
         if (strcmp(choice, "rectangle") == 0) {
             handle_rectangle();
@@ -92,8 +103,19 @@ void shapes_menu() {
 
 void calculator_menu() {
     int choice;
+    char continue_calculation;
 
     while (1) {
+        clear_screen();
+        printf("\nEnter the first number: ");
+        double a;
+        scanf("%lf", &a);
+        getchar();
+        printf("Enter the second number: ");
+        double b;
+        scanf("%lf", &b);
+        getchar();
+
         clear_screen();
         printf("\nCalculator Menu:\n");
         printf("1. Addition\n");
@@ -104,30 +126,39 @@ void calculator_menu() {
         printf("6. Return to main menu\n");
         printf("Choose an option: ");
         scanf("%d", &choice);
-        getchar(); 
+        getchar();
 
         switch (choice) {
             case 1:
-                handle_addition();
+                handle_addition(a, b);
                 break;
             case 2:
-                handle_subtraction();
+                handle_subtraction(a, b);
                 break;
             case 3:
-                handle_multiplication();
+                handle_multiplication(a, b);
                 break;
             case 4:
-                handle_division();
+                handle_division(a, b);
                 break;
             case 5:
-                handle_modulus();
+                handle_modulus(a, b);
                 break;
             case 6:
                 return;
             default:
                 printf("\nInvalid choice, please try again.\n");
+                waitForInput();
+                continue;
         }
-        waitForInput();
+
+        printf("\nDo you want to do another calculation? (Y/N): ");
+        scanf("%c", &continue_calculation);
+        getchar();
+
+        if (tolower((unsigned char)continue_calculation) != 'y') {
+            return;
+        }
     }
 }
 
