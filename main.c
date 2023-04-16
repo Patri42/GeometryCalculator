@@ -57,38 +57,33 @@ void waitForInput() {
 }
 
 void shapes_menu() {
-    int choice;
+    char choice[50];
 
     while (1) {
         clear_screen();
         printf("\nShapes Menu:\n");
-        printf("1. Rectangle\n");
-        printf("2. Parallelogram\n");
-        printf("3. Triangle\n");
-        printf("4. Circle\n");
-        printf("5. Return to main menu\n");
+        printf("Type 'rectangle' for Rectangle\n");
+        printf("Type 'parallelogram' for Parallelogram\n");
+        printf("Type 'triangle' for Triangle\n");
+        printf("Type 'circle' for Circle\n");
+        printf("Type 'return' to Return to main menu\n");
         printf("Choose an option: ");
-        scanf("%d", &choice);
-        getchar();
+        fgets(choice, sizeof(choice), stdin);
+        strtok(choice, "\n"); // Remove trailing newline character
 
-        switch (choice) {
-            case 1:
-                handle_rectangle();
-                break;
-            case 2:
-                handle_parallelogram();
-                break;
-            case 3:
-                handle_triangle();
-                break;
-            case 4:
-                handle_circle();
-                break;
-            case 5:
-                return;
-            default:
-                printf("\nInvalid choice, please try again.\n");
-                continue;
+        if (strcmp(choice, "rectangle") == 0) {
+            handle_rectangle();
+        } else if (strcmp(choice, "parallelogram") == 0) {
+            handle_parallelogram();
+        } else if (strcmp(choice, "triangle") == 0) {
+            handle_triangle();
+        } else if (strcmp(choice, "circle") == 0) {
+            handle_circle();
+        } else if (strcmp(choice, "return") == 0) {
+            return;
+        } else {
+            printf("\nInvalid choice, please try again.\n");
+            continue;
         }
 
         waitForInput();
