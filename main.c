@@ -7,12 +7,13 @@
 #include "shapes.h"
 #include "calculator.h"
 
+int int_input_func(const char *prompt);
 void main_menu();
 void waitForInput();
 void clear_screen();
 void to_lowercase(char *str);
 void shapes_menu();
-double py_input_func(const char *prompt);
+double double_input_func(const char *prompt);
 void calculator_menu();
 void handle_rectangle();
 void handle_parallelogram();
@@ -33,8 +34,8 @@ void main_menu() {
         printf("1. Shapes\n");
         printf("2. Calculator\n");
         printf("3. Terminate \n");
-        printf("Choose an option: ");
-        scanf("%d", &choice);
+        choice = int_input_func("Choose an option: ");
+        
         getchar();
 
         switch (choice) {
@@ -64,6 +65,22 @@ void to_lowercase(char *str) {
     for (int i = 0; str[i]; i++) {
         str[i] = tolower((unsigned char)str[i]);
     }
+}
+
+int int_input_func(const char *prompt) { // returns int number
+    int number;
+    char input_buffer[50];
+
+    printf("%s", prompt);
+    fgets(input_buffer, sizeof(input_buffer), stdin);
+
+    while (sscanf(input_buffer, "%d", &number) != 1) {
+        printf("Invalid input, please try again.\n");
+        printf("%s", prompt);
+        fgets(input_buffer, sizeof(input_buffer), stdin);
+    }
+
+    return number;
 }
 
 void shapes_menu() {
@@ -102,10 +119,18 @@ void shapes_menu() {
     }
 }
 
-double py_input_func(const char *prompt) {
+double double_input_func(const char *prompt) { // returns float number
     double number;
+    char input_buffer[50];
+
     printf("%s", prompt);
-    scanf("%lf", &number);
+    fgets(input_buffer, sizeof(input_buffer), stdin);
+
+    while (sscanf(input_buffer, "%lf", &number) != 1) {
+        printf("Invalid input, please try again.\n");
+        printf("%s", prompt);
+        fgets(input_buffer, sizeof(input_buffer), stdin);
+    }
     getchar();
     return number;
 }
@@ -117,8 +142,8 @@ void calculator_menu() {
     while (1) {
         clear_screen();
 
-        double a = py_input_func("\nEnter the first number: ");
-        double b = py_input_func("Enter the second number: ");
+        double a = double_input_func("\nEnter the first number: ");
+        double b = double_input_func("Enter the second number: ");
 
         clear_screen();
         printf("\nCalculator Menu:\n");
@@ -128,8 +153,7 @@ void calculator_menu() {
         printf("4. Division\n");
         printf("5. Modulus\n");
         printf("6. Return to main menu\n");
-        printf("Choose an option: ");
-        scanf("%d", &choice);
+        choice = int_input_func("Choose an option: ");
         getchar();
 
         switch (choice) {
@@ -173,12 +197,3 @@ void clear_screen() {
         system("clear");
     #endif
 }
-
-
-
-
-
-/*To make input validation more robust, consider using fgets() and sscanf() instead of scanf(). 
-This will help you prevent buffer overflows and provide better error handling. 
-However, this would require more significant changes to your input handling functions. 
-If you're interested in this approach, I can provide more guidance.*/
