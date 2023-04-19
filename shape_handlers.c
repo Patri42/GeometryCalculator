@@ -1,6 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "utils.h"
 #include "shapes.h"
+
+void print_area_circumference(double area, double circumference) {
+    printf("Area: %.2lf\n", area);
+    printf("Circumference: %.2lf\n", circumference);
+}
 
 void handle_rectangle() {
     double length, width;
@@ -22,7 +28,7 @@ void handle_parallelogram() {
      
 
     double area = parallelogram_area(base, height); 
-    area = double_input_func("Enter the side of the parallelogram: ");
+    side = double_input_func("Enter the side of the parallelogram: ");
      
 
     double circumference = parallelogram_circumference(base, side); 
@@ -48,11 +54,6 @@ void handle_triangle() {
     double circumference = triangle_circumference(base, side1, side2); 
 
     print_area_circumference(area, circumference);
-}
-
-void print_area_circumference(double area, double circumference) {
-    printf("Area: %.2lf\n", area);
-    printf("Circumference: %.2lf\n", circumference);
 }
 
 void handle_circle() {

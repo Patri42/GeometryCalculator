@@ -1,8 +1,8 @@
 PROG=main.exe
 CC=gcc
-SOURCES=main.c calculator.c shapes.c calculator_handlers.c shape_handlers.c rock_paper_scissors.c
+SOURCES=main.c calculator.c shapes.c calculator_handlers.c shape_handlers.c rock_paper_scissors.c utils.c
 CFLAGS=-g -Wall -Werror -std=c99
-DEPS=shapes.h calculator.h calculator_handlers.h shape_handlers.h
+DEPS=shapes.h calculator.h calculator_handlers.h shape_handlers.h utils.h
 OBJS=$(addprefix $(OUTPUTDIR)/,$(SOURCES:.c=.o))
 
 ifeq ($(DEBUG), 1)

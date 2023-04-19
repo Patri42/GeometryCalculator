@@ -38,22 +38,22 @@ void main_menu() {
         printf("2. Calculator\n");
         printf("3. Rock-paper-scissors\n");
         printf("4. Terminate \n");
-        choice = int_input_func("Choose an option: ");
+        choice = int_input_func("Choose an option and press ENTER: ");
         
-        getchar();
+        //getchar();
 
         switch (choice) {
             case 1:
                 shapes_menu();
-                waitForInput();
+                //waitForInput();
                 break;
             case 2:
                 calculator_menu();
-                waitForInput();
+                //waitForInput();
                 break;
             case 3:
                 rock_paper_scissors();
-                waitForInput();
+                //waitForInput();
                 break;
             case 4:
                 printf("Goodbye!\n");
