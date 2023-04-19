@@ -4,9 +4,30 @@
 #include "rock_paper_scissors.h"
 #include "utils.h"
 
+typedef enum {
+    DRAW,
+    WIN,
+    LOSE
+} GameResult;
+
+GameResult game_result(int user_choice, int computer_choice){
+    if (user_choice == computer_choice)
+        return DRAW;
+
+    if ((user_choice == 1 && computer_choice == 3) ||
+        (user_choice == 2 && computer_choice == 1) ||
+        (user_choice == 3 && computer_choice == 2)){
+        return WIN;
+	}
+    
+    return LOSE;
+}
+
 void rock_paper_scissors() {
     clear_screen();
+
     srand(time(NULL)); // Random nr generator
+
     int user_choice, computer_choice;
 
     while (1){
@@ -39,26 +60,28 @@ void rock_paper_scissors() {
                 printf("Scissors");
                 break;
         }
+
         printf("\n\n");
 
-        if (user_choice==computer_choice){
-            printf("It's a TIE!\n");
-            getchar();
-            clear_screen();
-        }
-        else if ((user_choice == 1 && computer_choice == 3) ||
-                (user_choice == 2 && computer_choice == 1) ||
-                (user_choice == 3 && computer_choice == 2)){
-            printf("You WIN!\n");
-            getchar();
-            clear_screen();
-            }
-        else{
-            printf("You LOSE!\n");
-            getchar();
-            clear_screen();
-        }
-        
-    }
+        GameResult result = game_result(user_choice, computer_choice);
 
+        switch (result) {
+            case DRAW:
+                printf("It's a draw!\n");
+                getchar();
+                clear_screen();
+                break;
+            case WIN:
+                printf("You win!\n");
+                getchar();
+                clear_screen();
+                break;
+            case LOSE:
+                printf("You lose!\n");
+                getchar();
+                clear_screen();
+                break;
+        }
+        print("\n");        
+    }
 }
