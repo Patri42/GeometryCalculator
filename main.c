@@ -6,6 +6,7 @@
 #include "calculator_handlers.h"
 #include "shapes.h"
 #include "calculator.h"
+#include "rock_paper_scissors.h"
 
 int int_input_func(const char *prompt);
 void main_menu();
@@ -15,6 +16,7 @@ void to_lowercase(char *str);
 void shapes_menu();
 double double_input_func(const char *prompt);
 void calculator_menu();
+void rock_paper_scissors();
 void handle_rectangle();
 void handle_parallelogram();
 void handle_triangle();
@@ -33,7 +35,8 @@ void main_menu() {
         printf("\nMain menu:\n");
         printf("1. Shapes\n");
         printf("2. Calculator\n");
-        printf("3. Terminate \n");
+        printf("3. Rock-paper-scissors\n");
+        printf("4. Terminate \n");
         choice = int_input_func("Choose an option: ");
         
         getchar();
@@ -48,6 +51,10 @@ void main_menu() {
                 waitForInput();
                 break;
             case 3:
+                rock_paper_scissors();
+                waitForInput();
+                break;
+            case 4:
                 printf("Goodbye!\n");
                 return;
             default:
@@ -131,7 +138,7 @@ double double_input_func(const char *prompt) { // returns float number
         printf("%s", prompt);
         fgets(input_buffer, sizeof(input_buffer), stdin);
     }
-    getchar();
+    
     return number;
 }
 
@@ -154,7 +161,7 @@ void calculator_menu() {
         printf("5. Modulus\n");
         printf("6. Return to main menu\n");
         choice = int_input_func("Choose an option: ");
-        getchar();
+        
 
         switch (choice) {
             case 1:

@@ -17,13 +17,13 @@ void handle_parallelogram() {
     double base, height, side;
 
     base = double_input_func("Enter the base of the parallelogram: ");
-    getchar();
+    
     height = double_input_func("Enter the height of the parallelogram: ");
-    getchar(); 
+     
 
     double area = parallelogram_area(base, height); 
     area = double_input_func("Enter the side of the parallelogram: ");
-    getchar(); 
+     
 
     double circumference = parallelogram_circumference(base, side); 
 
@@ -34,16 +34,16 @@ void handle_triangle() {
     double base, height, side1, side2;
 
     base = double_input_func("Enter the base of the triangle: ");
-    getchar(); 
+     
     height = double_input_func("Enter the height of the triangle: ");
-    getchar();
+    
 
     double area = triangle_area(base, height); 
 
     side1 = double_input_func("Enter the first lateral side: ");
-    getchar();
+    
     side2 = double_input_func("Enter the second lateral side: ");
-    getchar();
+    
 
     double circumference = triangle_circumference(base, side1, side2); 
 
@@ -58,7 +58,7 @@ void print_area_circumference(double area, double circumference) {
 void handle_circle() {
     double radius;
     radius = double_input_func("Enter the radius of the circle: ");
-    getchar(); 
+     
 
     double area = circle_area(radius); 
     double circumference = circle_circumference(radius); 
