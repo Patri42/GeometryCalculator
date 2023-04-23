@@ -2,26 +2,10 @@
 #include <stdlib.h>
 #include <time.h>
 #include "rock_paper_scissors.h"
+#include "game_data.h"
 #include "utils.h"
 
-typedef enum {
-    DRAW,
-    WIN,
-    LOSE
-} GameResult;
-
-GameResult game_result(int user_choice, int computer_choice){
-    if (user_choice == computer_choice)
-        return DRAW;
-
-    if ((user_choice == 1 && computer_choice == 3) ||
-        (user_choice == 2 && computer_choice == 1) ||
-        (user_choice == 3 && computer_choice == 2)){
-        return WIN;
-	}
-    
-    return LOSE;
-}
+#define RPS_RESULTS_FILE "rps_results.txt"
 
 void rock_paper_scissors() {
     clear_screen();
@@ -29,6 +13,8 @@ void rock_paper_scissors() {
     srand(time(NULL)); // Random nr generator
 
     int user_choice, computer_choice;
+	int total_games = 0;
+	int wins = 0;
 
     while (1){
         printf("Rock, Paper, Scissors\n");
@@ -65,6 +51,10 @@ void rock_paper_scissors() {
 
         GameResult result = game_result(user_choice, computer_choice);
 
+		
+
+		total_games++;
+
         switch (result) {
             case DRAW:
                 printf("It's a draw!\n");
@@ -73,6 +63,7 @@ void rock_paper_scissors() {
                 break;
             case WIN:
                 printf("You win!\n");
+				wins++;
                 getchar();
                 clear_screen();
                 break;
@@ -82,6 +73,7 @@ void rock_paper_scissors() {
                 clear_screen();
                 break;
         }
-        print("\n");        
+		save_game_result(result, total_games, wins);
+        printf("\n");        
     }
 }
