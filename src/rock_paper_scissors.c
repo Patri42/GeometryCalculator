@@ -1,3 +1,4 @@
+// Rock-paper-scissors game implementation
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -7,6 +8,7 @@
 
 #define RPS_RESULTS_FILE "rps_results.txt"
 
+// Main function for the rock-paper-scissors game
 void rock_paper_scissors() {
     clear_screen();
 
@@ -16,6 +18,7 @@ void rock_paper_scissors() {
 	int total_games = 0;
 	int wins = 0;
 
+    // Get user's choice
     while (1){
         printf("Rock, Paper, Scissors\n");
         printf("1. Rock\n");
@@ -32,9 +35,9 @@ void rock_paper_scissors() {
             continue;
         }
 
-        computer_choice = (rand() % 3)+ 1; // Generate computer's choice (1, 2, or 3) -- WHY +1?
+        computer_choice = (rand() % 3)+ 1; // Generate computer's choice (1, 2, or 3)
 
-        printf("Computer chose: ");
+        printf("Computer chose: "); // Display computer's choice
         switch (computer_choice) {
             case 1:
                 printf("Rock");
@@ -51,11 +54,10 @@ void rock_paper_scissors() {
 
         GameResult result = game_result(user_choice, computer_choice);
 
-		
-
 		total_games++;
 
-        switch (result) {
+        switch (result) { 
+            // Handle the game result and update the total games and wins count
             case DRAW:
                 printf("It's a draw!\n");
                 getchar();
@@ -73,6 +75,7 @@ void rock_paper_scissors() {
                 clear_screen();
                 break;
         }
+        // Save game result to file
 		save_game_result(result, total_games, wins);
         printf("\n");        
     }

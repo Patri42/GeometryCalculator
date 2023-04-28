@@ -3,6 +3,8 @@
 #include "shapes.h"
 #include <math.h>
 
+// Implementations of geometric shape calculations
+
 double rectangle_area(double length, double width) {
     return length * width;
 }

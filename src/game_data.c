@@ -3,10 +3,13 @@
 #include "game_data.h"
 #include "rock_paper_scissors.h"
 
+// Function to determine the game result based on user and computer choices
 GameResult game_result(int user_choice, int computer_choice){
+    // Condition when it is a draw
     if (user_choice == computer_choice)
         return DRAW;
 
+    // Conditions for the user to win
     if ((user_choice == 1 && computer_choice == 3) ||
         (user_choice == 2 && computer_choice == 1) ||
         (user_choice == 3 && computer_choice == 2)){
@@ -15,11 +18,12 @@ GameResult game_result(int user_choice, int computer_choice){
     
     return LOSE;
 }
-
+// Function to save the game result, date, and win rate to a file
 void save_game_result(GameResult result, int total_games, int wins) {
     // Open the file in append mode
     FILE *file = fopen("game_results.txt", "a");
 
+    // Check if the file opened successfully
     if (file == NULL) {
         printf("Error opening file.\n");
         return;

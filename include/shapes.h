@@ -1,6 +1,9 @@
 #ifndef SHAPES_HEADER_H
 #define SHAPES_HEADER_H
 
+// Function prototypes for calculating areas and circumferences of different shapes.
+
+
 double rectangle_area(double length, double width);
 double rectangle_circumference(double length, double width);
 double parallelogram_area(double base, double height);

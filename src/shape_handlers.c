@@ -3,6 +3,8 @@
 #include "utils.h"
 #include "shapes.h"
 
+// Handler functions for shape calculations
+
 void print_area_circumference(double area, double circumference) {
     printf("Area: %.2lf\n", area);
     printf("Circumference: %.2lf\n", circumference);
@@ -10,7 +12,7 @@ void print_area_circumference(double area, double circumference) {
 
 void handle_rectangle() {
     double length, width;
-    length = double_input_func("Enter the length of the rectangle: "); // Uses double_input_func() from main.c
+    length = double_input_func("Enter the length of the rectangle: "); 
     width = double_input_func("Enter the width of the rectangle: ");
 
     double area = rectangle_area(length, width); // Calls the function from shapes.c

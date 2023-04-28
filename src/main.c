@@ -40,20 +40,16 @@ void main_menu() {
         printf("4. Terminate \n");
         choice = int_input_func("Choose an option and press ENTER: ");
         
-        //getchar();
 
         switch (choice) {
             case 1:
                 shapes_menu();
-                //waitForInput();
                 break;
             case 2:
                 calculator_menu();
-                //waitForInput();
                 break;
             case 3:
                 rock_paper_scissors();
-                //waitForInput();
                 break;
             case 4:
                 printf("Goodbye!\n");
@@ -79,7 +75,7 @@ void shapes_menu() {
         fgets(choice, sizeof(choice), stdin);
         strtok(choice, "\n"); // Remove trailing newline character
 
-        to_lowercase(choice); // Convert user input to lowercase
+        to_lowercase(choice);
 
         if (strcmp(choice, "rectangle") == 0) {
             handle_rectangle();

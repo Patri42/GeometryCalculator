@@ -1,6 +1,8 @@
 #include "calculator.h"
 #include <stdio.h>
 
+// Implementations of calculator operations
+
 double add(double a, double b) {
     return a + b;
 }
